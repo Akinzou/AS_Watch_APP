@@ -6,13 +6,14 @@ dlg = uic.loadUi("GUI/AS_Watch_APP.ui")
 
 def ports():
     ports = list(serial.tools.list_ports.comports())
+
     if ports != []:
         for p in ports:
             dlg.PortList.addItem(p)
 
-    dlg.PortList.setEnabled(True)
-    dlg.ActualiseTime.setEnabled(True)
-    dlg.Execute.setEnabled(True)
+        dlg.PortList.setEnabled(True)
+        dlg.ActualiseTime.setEnabled(True)
+        dlg.Execute.setEnabled(True)
 
     else:
         dlg.PortList.addItem("Nothing is connected!")
