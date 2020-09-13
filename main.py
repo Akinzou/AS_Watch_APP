@@ -10,6 +10,10 @@ def ports():
         for p in ports:
             dlg.PortList.addItem(p)
 
+    dlg.PortList.setEnabled(True)
+    dlg.ActualiseTime.setEnabled(True)
+    dlg.Execute.setEnabled(True)
+
     else:
         dlg.PortList.addItem("Nothing is connected!")
         dlg.PortList.setEnabled(False)
