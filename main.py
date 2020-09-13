@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets, uic, QtCore, QtGui
 from  PyQt5 import *
 import serial.tools.list_ports
 app = QtWidgets.QApplication([])
-dlg = uic.loadUi("GUI/AS_Wath_APP.ui")
+dlg = uic.loadUi("GUI/AS_Watch_APP.ui")
 dlg.setWindowIcon(QtGui.QIcon('GUI/icon.png'))
 
 
