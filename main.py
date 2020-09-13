@@ -17,12 +17,14 @@ def checkPorts():
         dlg.PortList.setEnabled(True)
         dlg.ActualiseTime.setEnabled(True)
         dlg.Execute.setEnabled(True)
+        dlg.SeaPressure.setEnabled(True)
 
     else:
         dlg.PortList.addItem("Nothing is connected!")
         dlg.PortList.setEnabled(False)
         dlg.ActualiseTime.setEnabled(False)
         dlg.Execute.setEnabled(False)
+        dlg.SeaPressure.setEnabled(False)
 
 dlg.Refresh.clicked.connect(checkPorts)
 checkPorts()
