@@ -23,7 +23,7 @@ def ports():
         dlg.ActualiseTime.setEnabled(False)
         dlg.Execute.setEnabled(False)
 
-dlg.Restart.clicked.connect(ports)
+dlg.Refresh.clicked.connect(ports)
 ports()
 dlg.show()
 app.exec()
