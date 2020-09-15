@@ -5,6 +5,16 @@ app = QtWidgets.QApplication([])
 dlg = uic.loadUi("GUI/AS_Watch_APP.ui")
 dlg.setWindowIcon(QtGui.QIcon('GUI/icon.png'))
 
+def send():
+    print(dlg.PortList.currentText())
+
+    if dlg.ActualiseTime.isChecked() == True:
+        print("Actualise")
+
+    else:
+        print("Dont")
+
+    print(dlg.SeaPressure.value())
 
 def checkPorts():
     ports = list(serial.tools.list_ports.comports())
@@ -21,12 +31,14 @@ def checkPorts():
 
     else:
         dlg.PortList.addItem("Nothing is connected!")
+        dlg.PortList.addItem("Test")
         dlg.PortList.setEnabled(False)
         dlg.ActualiseTime.setEnabled(False)
         dlg.Execute.setEnabled(False)
         dlg.SeaPressure.setEnabled(False)
 
 dlg.Refresh.clicked.connect(checkPorts)
+dlg.Execute.clicked.connect(send)
 checkPorts()
 dlg.show()
 app.exec()
