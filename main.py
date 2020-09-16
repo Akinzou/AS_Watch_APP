@@ -4,9 +4,17 @@ import serial.tools.list_ports
 app = QtWidgets.QApplication([])
 dlg = uic.loadUi("GUI/AS_Watch_APP.ui")
 dlg.setWindowIcon(QtGui.QIcon('GUI/icon.png'))
+ints = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 def send():
-    print(dlg.PortList.currentText())
+    SelectedPortList = list(dlg.PortList.currentText())
+    port = 'COM'
+    port += SelectedPortList[3]
+
+    if SelectedPortList[4] in ints:
+        port += SelectedPortList[4]
+
+    print(port)
 
     if dlg.ActualiseTime.isChecked() == True:
         print("Actualise")
@@ -31,7 +39,6 @@ def checkPorts():
 
     else:
         dlg.PortList.addItem("Nothing is connected!")
-        dlg.PortList.addItem("Test")
         dlg.PortList.setEnabled(False)
         dlg.ActualiseTime.setEnabled(False)
         dlg.Execute.setEnabled(False)
