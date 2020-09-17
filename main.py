@@ -31,7 +31,6 @@ def send():
 
 def checkPorts():
     global NowPorts
-    print("x")
     ports = list(serial.tools.list_ports.comports())
 
     if ports != NowPorts:
