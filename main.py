@@ -1,12 +1,16 @@
 from PyQt5 import QtWidgets, uic, QtCore, QtGui
-from  PyQt5 import *
 import serial.tools.list_ports
+from PyQt5.QtCore import QTimer
+
 app = QtWidgets.QApplication([])
 dlg = uic.loadUi("GUI/AS_Watch_APP.ui")
 dlg.setWindowIcon(QtGui.QIcon('GUI/icon.png'))
 ints = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+NowPorts = []
+
 
 def send():
+    actualise = False
     SelectedPortList = list(dlg.PortList.currentText())
     port = 'COM'
     port += SelectedPortList[3]
@@ -17,18 +21,20 @@ def send():
     print(port)
 
     if dlg.ActualiseTime.isChecked() == True:
-        print("Actualise")
+        actualise = True
 
-    else:
-        print("Dont")
+    if actualise:
+        print("A0")
 
-    print(dlg.SeaPressure.value())
+    if dlg.SeaPressure.value():
+        print("A1")
 
 def checkPorts():
+    global NowPorts
     ports = list(serial.tools.list_ports.comports())
-    dlg.PortList.clear()
 
-    if ports != []:
+    if ports != NowPorts:
+        dlg.PortList.clear()
         for p in ports:
             dlg.PortList.addItem(str(p))
 
@@ -37,14 +43,18 @@ def checkPorts():
         dlg.Execute.setEnabled(True)
         dlg.SeaPressure.setEnabled(True)
 
-    else:
+    if ports == []:
+        dlg.PortList.clear()
         dlg.PortList.addItem("Nothing is connected!")
         dlg.PortList.setEnabled(False)
         dlg.ActualiseTime.setEnabled(False)
         dlg.Execute.setEnabled(False)
         dlg.SeaPressure.setEnabled(False)
 
-dlg.Refresh.clicked.connect(checkPorts)
+    NowPorts = ports
+    QTimer.singleShot(1000, checkPorts)
+
+
 dlg.Execute.clicked.connect(send)
 checkPorts()
 dlg.show()
