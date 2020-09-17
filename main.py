@@ -55,10 +55,6 @@ def checkPorts():
     NowPorts = ports
     QTimer.singleShot(1000, checkPorts)
 
-for i in range(1,50):
-    dlg.SerialPrint.append('test')
-
-
 
 dlg.Execute.clicked.connect(send)
 checkPorts()
