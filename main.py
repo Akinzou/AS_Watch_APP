@@ -1,6 +1,7 @@
 from PyQt5 import QtWidgets, uic, QtCore, QtGui
 import serial.tools.list_ports
 from PyQt5.QtCore import QTimer
+from datetime import datetime
 
 app = QtWidgets.QApplication([])
 dlg = uic.loadUi("GUI/AS_Watch_APP.ui")
@@ -19,13 +20,15 @@ def send():
     if SelectedPortList[4] in ints:
         port += SelectedPortList[4]
 
-    print(port)
+    PrintInSerial = "Sending to: " + str(port)
+    dlg.SerialPrint.append(PrintInSerial)
 
     if dlg.ActualiseTime.isChecked() == True:
         actualise = True
 
     if actualise:
-        dlg.SerialPrint.append("Actualise time")
+        PrintInSerial = "Actualise time to: " + str(datetime.now().strftime("%Y-%m-%e %H:%M:%S"))
+        dlg.SerialPrint.append(PrintInSerial)
 
     if dlg.SeaPressure.value():
         PrintInSerial = "Set sea pressure to: " + str(dlg.SeaPressure.value()) + " hPa"
