@@ -415,6 +415,11 @@
         <height>20</height>
        </size>
       </property>
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
      </widget>
     </item>
     <item row="9" column="0">
