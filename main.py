@@ -10,6 +10,7 @@ NowPorts = []
 
 
 def send():
+    dlg.SerialPrint.append("")
     actualise = False
     SelectedPortList = list(dlg.PortList.currentText())
     port = 'COM'
@@ -24,10 +25,11 @@ def send():
         actualise = True
 
     if actualise:
-        print("A0")
+        dlg.SerialPrint.append("Actualise time")
 
     if dlg.SeaPressure.value():
-        print("A1")
+        PrintInSerial = "Set sea pressure to: " + str(dlg.SeaPressure.value()) + " hPa"
+        dlg.SerialPrint.append(PrintInSerial)
 
 def checkPorts():
     global NowPorts
@@ -42,6 +44,7 @@ def checkPorts():
         dlg.ActualiseTime.setEnabled(True)
         dlg.Execute.setEnabled(True)
         dlg.SeaPressure.setEnabled(True)
+        dlg.SerialPrint.setEnabled(True)
 
     if ports == []:
         dlg.PortList.clear()
@@ -50,6 +53,7 @@ def checkPorts():
         dlg.ActualiseTime.setEnabled(False)
         dlg.Execute.setEnabled(False)
         dlg.SeaPressure.setEnabled(False)
+        dlg.SerialPrint.setEnabled(False)
 
     NowPorts = ports
     QTimer.singleShot(1000, checkPorts)
