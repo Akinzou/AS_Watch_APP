@@ -48,12 +48,12 @@ def checkPorts():
 
     if ports == []:
         dlg.PortList.clear()
-        dlg.PortList.addItem("COM3 - AS_Watch")
-        # dlg.PortList.setEnabled(False)
-        # dlg.ActualiseTime.setEnabled(False)
-        # dlg.Execute.setEnabled(False)
-        # dlg.SeaPressure.setEnabled(False)
-        # dlg.SerialPrint.setEnabled(False)
+        dlg.PortList.addItem("Nothing is connected!")
+        dlg.PortList.setEnabled(False)
+        dlg.ActualiseTime.setEnabled(False)
+        dlg.Execute.setEnabled(False)
+        dlg.SeaPressure.setEnabled(False)
+        dlg.SerialPrint.setEnabled(False)
 
     NowPorts = ports
     QTimer.singleShot(1000, checkPorts)
