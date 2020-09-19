@@ -20,18 +20,15 @@ def send():
     if SelectedPortList[4] in ints:
         port += SelectedPortList[4]
 
-    PrintInSerial = "Sending to: " + str(port)
+    PrintInSerial = "Sending to: " + str(port) + ":"
     dlg.SerialPrint.append(PrintInSerial)
 
-    if dlg.ActualiseTime.isChecked() == True:
-        actualise = True
-
-    if actualise:
-        PrintInSerial = "Actualise time to: " + str(datetime.now().strftime("%Y-%m-%e %H:%M:%S"))
+    if dlg.ActualiseTime.isChecked():
+        PrintInSerial = "   Actualise time to: " + str(datetime.now().strftime("%Y-%m-%e %H:%M:%S"))
         dlg.SerialPrint.append(PrintInSerial)
 
     if dlg.SeaPressure.value():
-        PrintInSerial = "Set sea pressure to: " + str(dlg.SeaPressure.value()) + " hPa"
+        PrintInSerial = "   Set sea pressure to: " + str(dlg.SeaPressure.value()) + " hPa"
         dlg.SerialPrint.append(PrintInSerial)
 
 def checkPorts():
@@ -51,12 +48,12 @@ def checkPorts():
 
     if ports == []:
         dlg.PortList.clear()
-        dlg.PortList.addItem("Nothing is connected!")
-        dlg.PortList.setEnabled(False)
-        dlg.ActualiseTime.setEnabled(False)
-        dlg.Execute.setEnabled(False)
-        dlg.SeaPressure.setEnabled(False)
-        dlg.SerialPrint.setEnabled(False)
+        dlg.PortList.addItem("COM3 - AS_Watch")
+        # dlg.PortList.setEnabled(False)
+        # dlg.ActualiseTime.setEnabled(False)
+        # dlg.Execute.setEnabled(False)
+        # dlg.SeaPressure.setEnabled(False)
+        # dlg.SerialPrint.setEnabled(False)
 
     NowPorts = ports
     QTimer.singleShot(1000, checkPorts)
