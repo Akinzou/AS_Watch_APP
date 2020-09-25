@@ -4,5 +4,4 @@
 App for AS_Watch on computer
 
 You can:
-• Update time
-• Change sea level pressure
+• Update time• Change sea level pressure
